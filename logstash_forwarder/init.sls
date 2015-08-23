@@ -25,7 +25,7 @@ logstash-forwarder-cert:
 {%- endif %}
 
 {%- if logstash_forwarder.key_contents is defined %}
-logstash-forwarder-cert:
+logstash-forwarder-key:
   file.managed:
     - name: {{logstash_forwarder.key_path}}
     - contents_pillar: logstash_forwarder:key_contents
