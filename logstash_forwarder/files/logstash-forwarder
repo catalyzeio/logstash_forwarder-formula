@@ -10,6 +10,8 @@
       {%- endfor %}
     ],
     "timeout": {{logstash_forwarder.timeout}},
+    "ssl ca": "{{logstash_forwarder.cert_path}}",
+    "ssl certificate": "{{logstash_forwarder.key_path}}",
     "ssl ca": "{{logstash_forwarder.cert_path}}"
   },
   "files": [
