@@ -24,6 +24,20 @@ logstash-forwarder-cert:
       - service: logstash-forwarder-svc
 {%- endif %}
 
+{%- if logstash_forwarder.key_contents is defined %}
+logstash-forwarder-cert:
+  file.managed:
+    - name: {{logstash_forwarder.key_path}}
+    - contents_pillar: logstash_forwarder:key_contents
+    - user: root
+    - group: root
+    - mode: 664
+    - template: jinja
+    - watch_in:
+      - service: logstash-forwarder-svc
+{%- endif %}
+
+
 logstash-forwarder-config:
   file.managed:
     - name: /etc/logstash-forwarder
